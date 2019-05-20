@@ -268,6 +268,56 @@ em {
 					</textarea>
 				</section>
 
+				<section data-markdown>
+					<textarea data-template>
+						`then()` always returns a `Promise` object. If the callback does not return a Promise, its return value is converted into a Promise automatically.
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Creating Promises
+
+						`Promise` is a top-level object.
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							const myPromise = new Promise();
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						The Promise constructor function takes one argument, which is a callback to run asynchronously.
+
+						When the callback is done, it should call `resolve()` or `reject()`, which are arguments to the callback.
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							const myPromise = new Promise(function (resolve, reject) {
+								setTimeout(function() {
+									resolve();
+								}, 1000)
+							});
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						Any `then()` callbacks will be called when `resolve()` is called inside the Promise function.
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							const myPromise = new Promise(function (resolve, reject) {
+								setTimeout(function() {
+									resolve();
+								}, 1000)
+							});
+
+							myPromise.then(() => console.log('all done!'))
+						</code></pre>
+					</textarea>
+				</section>
+
 			</div>
 		</div>
 
