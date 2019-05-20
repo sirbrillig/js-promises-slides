@@ -377,6 +377,45 @@ em {
 					</textarea>
 				</section>
 
+				<section data-markdown>
+					<textarea data-template>
+						### Handling errors
+
+						If a Promise fails, its `reject()` function is called instead of `resolve()`.
+
+						This will cause it to _skip_ all `then()` callbacks and instead call the nearest `catch()`.
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Catch
+
+						Every Promise object also has a `catch()` method, which works just like `then()`. It takes one callback argument which is called if the Promise fails.
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							boilWater()
+							.catch(() => console.error('There was a problem making tea.'))
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						`catch()` will be called for any unhandled rejection in any Promise in the chain.
+
+						The following `catch()` is called if any of the steps fails (and the chain will stop):
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							fillKettle()
+							.then(boilWater)
+							.then(() => addLeaves('green'))
+							.then(() => steepTea('1 minute'));
+							.catch(() => console.error('There was a problem making tea.'))
+						</code></pre>
+					</textarea>
+				</section>
+
 			</div>
 		</div>
 
