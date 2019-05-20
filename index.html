@@ -21,6 +21,14 @@ em {
 .reveal a {
 	color: #32E875;
 }
+
+.reveal code {
+	color: #47fcff;
+}
+
+.reveal pre code {
+	color: #ddd;
+}
 		</style>
 
 		<!-- Printing and PDF exports -->
@@ -153,6 +161,53 @@ em {
 									});
 								});
 							});
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Promises
+
+						Promises are the solution to callback hell.
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						> The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						Each `Promise` object has a `then()` method that accepts a callback. The callback will be called when the operation is complete.
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							doThis().then(doThat);
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						`then()` always returns a Promise, so we can chain them together.
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							doThis().then(doThat).then(doSomethingElse);
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						Let's try again using Promises.
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							fillKettle()
+							.then(boilWater)
+							.then(() => addLeaves('green'))
+							.then(() => steepTea('1 minute'));
 						</code></pre>
 					</textarea>
 				</section>
