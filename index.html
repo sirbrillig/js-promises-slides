@@ -176,6 +176,18 @@ em {
 				<section data-markdown>
 					<textarea data-template>
 						> The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
+
+						<small>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise</small>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						A Promise is in one of these states:
+
+						- _pending_: initial state, neither fulfilled nor rejected.
+						- _fulfilled_: meaning that the operation completed successfully.
+						- _rejected_: meaning that the operation failed.
 					</textarea>
 				</section>
 
@@ -195,6 +207,18 @@ em {
 
 						<pre><code data-trim data-noescape class="JavaScript">
 							doThis().then(doThat).then(doSomethingElse);
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						It's easier to read if we put them vertically:
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							doThis()
+							.then(doThat)
+							.then(doSomethingElse);
 						</code></pre>
 					</textarea>
 				</section>
@@ -270,7 +294,9 @@ em {
 
 				<section data-markdown>
 					<textarea data-template>
-						`then()` always returns a `Promise` object. If the callback does not return a Promise, its return value is converted into a Promise automatically.
+						`then()` always returns a `Promise` object.
+
+						If the callback does not return a Promise, its return value is converted into a Promise automatically.
 					</textarea>
 				</section>
 
@@ -278,7 +304,7 @@ em {
 					<textarea data-template>
 						### Creating Promises
 
-						`Promise` is a top-level object.
+						`Promise` is a top-level constructor function.
 
 						<pre><code data-trim data-noescape class="JavaScript">
 							const myPromise = new Promise();
@@ -288,9 +314,9 @@ em {
 
 				<section data-markdown>
 					<textarea data-template>
-						The Promise constructor function takes one argument, which is a callback to run asynchronously.
+						The Promise constructor function takes one argument, which is a function to run immediately. It should do something asynchronous.
 
-						When the callback is done, it should call `resolve()` or `reject()`, which are arguments to the callback.
+						When it's done, it should call `resolve()` or `reject()`, which are arguments to the function.
 
 						<pre><code data-trim data-noescape class="JavaScript">
 							const myPromise = new Promise(function (resolve, reject) {
@@ -310,10 +336,16 @@ em {
 							const myPromise = new Promise(function (resolve, reject) {
 								setTimeout(function() {
 									resolve();
-								}, 1000) // Takes 1 second to resolve
+								}, 1000);
 							});
 
 							myPromise.then(() => console.log('all done!'));
+							console.log('starting operation...');
+						</code></pre>
+
+						<pre class="fragment"><code data-trim data-noescape class="markdown">
+							starting operation...
+							all done!
 						</code></pre>
 					</textarea>
 				</section>
@@ -412,6 +444,36 @@ em {
 							.then(() => addLeaves('green'))
 							.then(() => steepTea('1 minute'));
 							.catch(() => console.error('There was a problem making tea.'))
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						`then()` (or `catch()`) will be called even if the Promise has _already_ resolved.
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							const done = new Promise(resolve => resolve('hello'))
+
+							done
+							.then(greeting => console.log(`${greeting}, my friend!`))
+						</code></pre>
+
+						<pre class="fragment"><code data-trim data-noescape class="markdown">
+							hello, my friend!
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						There's actually a shortcut for this pattern: `Promise.resolve()`
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							const done = Promise.resolve('hello')
+
+							done
+							.then(greeting => console.log(`${greeting}, my friend!`))
 						</code></pre>
 					</textarea>
 				</section>
