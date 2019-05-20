@@ -29,6 +29,11 @@ em {
 .reveal pre code {
 	color: #ddd;
 }
+
+strong.scare {
+	color: #ff2828;
+	font-family: fantasy;
+}
 		</style>
 
 		<!-- Printing and PDF exports -->
@@ -54,7 +59,7 @@ em {
 					</textarea>
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-background-color="#43248c">
 					<textarea data-template>
 						### Who am I?
 
@@ -76,13 +81,17 @@ em {
 					</textarea>
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-background-color="#43248c">
 					<textarea data-template>
 						### The Event Loop
+					</textarea>
+				</section>
 
-						JavaScript executes statements in the current block until they are all complete.
+				<section data-markdown>
+					<textarea data-template>
+						JavaScript executes statements in the current block ("call stack") until they are all complete.
 
-						<p class="fragment">Then it loops back around and checks for new statements in the queue.</p>
+						<p class="fragment">Then it loops back around and checks for new statements in the <em>queue</em>.</p>
 					</textarea>
 				</section>
 
@@ -100,16 +109,26 @@ em {
 					</textarea>
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-background-color="#43248c">
 					<textarea data-template>
 						### Callbacks
+					</textarea>
+				</section>
 
+				<section data-markdown>
+					<textarea data-template>
 						We can add a block of code to the queue that will be executed when an event occurs. This is a callback function.
 
 						<pre><code data-trim data-noescape>
 							document.addEventListener('DOMContentLoaded', function() {
 								console.log('The page is ready!');
 							});
+						</code></pre>
+
+						<pre><code data-trim data-noescape>
+							setTimeout(function() {
+								console.log('One second has passed.');
+							}, 1000);
 						</code></pre>
 					</textarea>
 				</section>
@@ -145,7 +164,9 @@ em {
 
 				<section data-markdown>
 					<textarea data-template>
-						Callback Hell!
+						<strong class="scare">Callback Hell!</strong>
+
+						😱
 
 						<pre><code data-trim class="JavaScript">
 							fillKettle(function() {
@@ -165,15 +186,19 @@ em {
 					</textarea>
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-background-color="#43248c">
 					<textarea data-template>
 						### Promises
-
-						Promises are the solution to callback hell.
 					</textarea>
 				</section>
 
 				<section data-markdown>
+					<textarea data-template>
+						Promises are the solution to callback hell.
+					</textarea>
+				</section>
+
+				<section data-markdown data-background-color="#43248c">
 					<textarea data-template>
 						> The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
 
@@ -370,10 +395,14 @@ em {
 					</textarea>
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-background-color="#43248c">
 					<textarea data-template>
 						### fetch
+					</textarea>
+				</section>
 
+				<section data-markdown>
+					<textarea data-template>
 						`fetch()` is a Web API function in JavaScript that makes HTTP requests.
 
 						It returns a `Promise` that resolves when the request is complete.
@@ -382,8 +411,6 @@ em {
 
 				<section data-markdown>
 					<textarea data-template>
-						### fetch
-
 						The result of `fetch()` must be converted to something (like JSON) before it can be used. This process also returns a `Promise`.
 					</textarea>
 				</section>
@@ -409,10 +436,14 @@ em {
 					</textarea>
 				</section>
 
+				<section data-markdown data-background-color="#43248c">
+					<textarea data-template>
+						### Handling Errors
+					</textarea>
+				</section>
+
 				<section data-markdown>
 					<textarea data-template>
-						### Handling errors
-
 						If a Promise fails, its `reject()` function is called instead of `resolve()`.
 
 						This will cause it to _skip_ all `then()` callbacks and instead call the nearest `catch()`.
@@ -496,10 +527,14 @@ em {
 					</textarea>
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-background-color="#43248c">
 					<textarea data-template>
 						### Multiple Promises
+					</textarea>
+				</section>
 
+				<section data-markdown>
+					<textarea data-template>
 						When you want to wait for several Promises to complete, you can use `Promise.all()`.
 
 						It accepts an array of Promises and returns a new Promise that will complete when all the others are complete.
@@ -527,10 +562,14 @@ em {
 					</textarea>
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-background-color="#43248c">
 					<textarea data-template>
 						### Await, there's more!
+					</textarea>
+				</section>
 
+				<section data-markdown>
+					<textarea data-template>
 						A new addition to the language is the `await` keyword.
 
 						This allows async functions to be written as if they were synchronous.
@@ -557,7 +596,7 @@ em {
 					</textarea>
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-background-color="#43248c">
 					<textarea data-template>
 						> The await expression causes async function execution to pause until a Promise is resolved... and to resume execution of the async function after fulfillment. When resumed, the value of the await expression is that of the fulfilled Promise.
 
@@ -645,10 +684,14 @@ em {
 					</textarea>
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-background-color="#43248c">
 					<textarea data-template>
 						### Top Level Await
+					</textarea>
+				</section>
 
+				<section data-markdown>
+					<textarea data-template>
 						In the future, we will have "Top Level Await" so we can use `await` outside of an `async` function.
 
 						<small>https://github.com/tc39/proposal-top-level-await</small>
@@ -657,10 +700,14 @@ em {
 					</textarea>
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-background-color="#43248c">
 					<textarea data-template>
 						### Other Implementations
+					</textarea>
+				</section>
 
+				<section data-markdown>
+					<textarea data-template>
 						This is not a new idea. Native Promises were added in ES6. Other versions of Promises include:
 
 						- <a href="https://api.jquery.com/jquery.deferred/">jQuery Deferred</a>
