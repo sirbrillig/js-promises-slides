@@ -416,6 +416,37 @@ em {
 					</textarea>
 				</section>
 
+				<section data-markdown>
+					<textarea data-template>
+						### Multiple Promises
+
+						When you want to wait for several Promises to complete, you can use `Promise.all()`.
+
+						It accepts an array of Promises and returns a new Promise that will complete when all the others are complete.
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						`Promise.all()` is useful to run things in "parallel"*, like loading resources for a game.
+
+						<small>*Async but still serial.</small>
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							const imageLoader = loadImages();
+							const soundLoader = loadSounds();
+							const movieLoader = loadMovies();
+							const loader = Promise.all([
+								imageLoader,
+								soundLoader,
+								movieLoader,
+							]);
+
+							loader.then(startGame);
+						</code></pre>
+					</textarea>
+				</section>
+
 			</div>
 		</div>
 
