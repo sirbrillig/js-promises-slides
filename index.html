@@ -201,6 +201,24 @@ em {
 
 				<section data-markdown>
 					<textarea data-template>
+						Here's that callback code again:
+
+						<small>(Switched to fat arrow functions)</small>
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							fillKettle(() => {
+								boilWater(() => {
+									addLeaves('green', () => {
+										steepTea('1 minute');
+									});
+								});
+							});
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
 						Let's try again using Promises.
 
 						<pre><code data-trim data-noescape class="JavaScript">
@@ -208,6 +226,44 @@ em {
 							.then(boilWater)
 							.then(() => addLeaves('green'))
 							.then(() => steepTea('1 minute'));
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						Remember this?
+
+						<pre><code data-trim class="JavaScript">
+							fillKettle(function() {
+								boilWater(function() {
+									addLeaves('green', function() {
+										steepTea('1 minute', function() {
+											pourTea(function() {
+                        serveTea(function() {
+                          drinkTea();
+                        });
+											});
+										});
+									});
+								});
+							});
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						It doesn't matter how many callbacks we need, there's no nesting.
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							fillKettle()
+							.then(boilWater)
+							.then(() => addLeaves('green'))
+							.then(() => steepTea('1 minute'))
+							.then(pourTea)
+							.then(serveTea)
+							.then(drinkTea);
 						</code></pre>
 					</textarea>
 				</section>
