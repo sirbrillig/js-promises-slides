@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>JS Promises</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<style>
+em {
+	color: #47fcff;
+}
+
+.reveal a {
+	color: #32E875;
+}
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-markdown>
+					<textarea data-template>
+						## Promises in JavaScript
+
+						or:
+
+						Do this, then that.
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Who am I?
+
+						👋 I'm Payton. I write code at Automattic, makers of WordPress.com.
+
+						<small>I also like tea, Tai Chi, and Dungeons and Dragons.</small>
+
+						<small>https://payton.codes/</small>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### How does JavaScript execute code?
+
+						JavaScript is <em>single-threaded</em>; it only executes one thing at a time.
+
+						<p class="fragment">But it is also <em>asynchronous</em>; it is designed to react to events and to trigger jobs that take an unknown amount of time to complete.</p>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### The Event Loop
+
+						JavaScript executes statements in the current block until they are all complete.
+
+						<p class="fragment">Then it loops back around and checks for new statements in the queue.</p>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### The Event Queue
+
+						Some things that can add to the queue:
+
+						- user events (clicks, typing, etc.)
+						- browser events (loading, leaving, etc.)
+						- network events
+						- data events
+						- the `setTimeout()` function
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### Callbacks
+
+						We can add a block of code to the queue that will be executed when an event occurs. This is a callback function.
+
+						<pre><code data-trim data-noescape>
+							document.addEventListener('DOMContentLoaded', function() {
+								console.log('The page is ready!');
+							});
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						But what if you want to chain multiple callbacks together?
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							fillKettle(); // wait until it's finished, then...
+							boilWater(); // wait until it's finished, then...
+							addLeaves('green'); // wait until it's finished, then...
+							steepTea('1 minute');
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						Let's try using callbacks.
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							fillKettle(function() {
+								boilWater(function() {
+									addLeaves('green', function() {
+										steepTea('1 minute');
+									});
+								});
+							});
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						Callback Hell!
+
+						<pre><code data-trim class="JavaScript">
+							fillKettle(function() {
+								boilWater(function() {
+									addLeaves('green', function() {
+										steepTea('1 minute', function() {
+											pourTea(function() {
+                        serveTea(function() {
+                          drinkTea();
+                        });
+											});
+										});
+									});
+								});
+							});
+						</code></pre>
+					</textarea>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				hash: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
