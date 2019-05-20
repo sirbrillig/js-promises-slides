@@ -480,6 +480,24 @@ em {
 
 				<section data-markdown>
 					<textarea data-template>
+						### Finally
+
+						If you need something to run no matter what, you can use `finally()`.
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							let isMakingTea = true;
+							boilWater()
+							.then(steepTea)
+							.catch(() => console.error('Failed to make tea.'))
+							.finally(() => {
+								isMakingTea = false;
+							});
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
 						### Multiple Promises
 
 						When you want to wait for several Promises to complete, you can use `Promise.all()`.
