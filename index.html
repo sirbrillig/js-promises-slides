@@ -296,7 +296,7 @@ em {
 							const myPromise = new Promise(function (resolve, reject) {
 								setTimeout(function() {
 									resolve();
-								}, 1000)
+								}, 1000) // Takes 1 second to resolve
 							});
 						</code></pre>
 					</textarea>
@@ -310,10 +310,69 @@ em {
 							const myPromise = new Promise(function (resolve, reject) {
 								setTimeout(function() {
 									resolve();
-								}, 1000)
+								}, 1000) // Takes 1 second to resolve
 							});
 
-							myPromise.then(() => console.log('all done!'))
+							myPromise.then(() => console.log('all done!'));
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						If `resolve()` is passed arguments, those arguments are provided to the callback in `then()`.
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							const myPromise = new Promise(function (resolve, reject) {
+								setTimeout(function() {
+									resolve('Hong Shui Oolong');
+								}, 1000) // Takes 1 second to resolve
+							});
+
+							myPromise.then(tea => console.log(`Today's tea is ${tea}`));
+						</code></pre>
+
+						<pre><code data-trim data-noescape class="markdown">
+							Today's tea is Hong Shui Oolong
+						</code></pre>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### fetch
+
+						`fetch()` is a Web API function in JavaScript that makes HTTP requests.
+
+						It returns a `Promise` that resolves when the request is complete.
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						### fetch
+
+						The result of `fetch()` must be converted to something (like JSON) before it can be used. This process also returns a `Promise`.
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						Using `fetch()` to get JSON data from a web server:
+
+						<pre><code data-trim data-noescape class="JavaScript">
+							fetch('https://jsonplaceholder.typicode.com/todos/1')
+							.then(response => response.json())
+							.then(json => console.log(json))
+						</code></pre>
+
+						<pre class="fragment"><code data-trim data-noescape class="json">
+{
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
+}
 						</code></pre>
 					</textarea>
 				</section>
